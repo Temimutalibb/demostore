@@ -1,0 +1,58 @@
+.display{
+   display: "flex";
+   align-items:"center";
+   flex-wrap:"wrap";
+   font-size: '11px'
+}
+
+
+
+
+.displayprice{
+    background-color: white;
+    margin-bottom: 25px;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.image{
+    background-color: white;
+    font-weight: bold;
+    box-shadow: 5px 5px 8px #8888886e;  
+    height:300px;
+    width: 100%;
+    position: relative;
+    border-radius: 15px;   
+}
+
+.icon{ 
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    border-radius:50% ;
+    border-width: 30px;
+    padding:5px;
+    font-size:20px;
+    margin-bottom: 10px;
+    cursor:pointer 
+}
+
+.priceclass{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+   } 
+   .clothname{
+       grid-column: 1/4;
+       grid-row   : 1;
+       white-space: pre-wrap;
+   }
+   .whilst{
+    grid-column: 4;
+    grid-row: 1;
+    justify-self: end;
+    
+    
+    }

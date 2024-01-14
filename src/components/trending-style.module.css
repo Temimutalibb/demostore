@@ -1,0 +1,35 @@
+.container{
+  display: inline-block;
+    width: 250px;
+    height: 300px
+}
+
+.boxone{
+
+  background-color: aqua;
+  
+}
+
+
+.bodyclass{
+  background-color: white;
+  margin-bottom: 25px;
+  display: inline-block;
+  margin-right: 15px;
+  
+}
+
+.flexbox{
+  height: "300px";
+   width: '250px';
+  background-color: 'white';
+   display:"inline-block";
+  margin-right: "15px"
+}
+.flexboxchildren{
+  width: "45%";
+  display:"inline-flex";
+  height:"140px";
+  background-color:"yellow";
+  margin:"5px"
+}
