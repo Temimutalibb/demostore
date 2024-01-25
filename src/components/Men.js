@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Box from "./Box";
@@ -6,11 +5,10 @@ import Box from "./Box";
  export let  taskList  = [];
  export const dataList = () => taskList;
 
-export default function Men(){
+export default function Men({handleClothChange,  handleClothSave, bookMarkColor}){
    /* for the scroll icon when over */
      const [scrollRight, setScrollRight]  = useState(false);
-     const [scrollLeft, setScrollLeft]    = useState(false);
-     const [handlename, setHandlename]    = useState(dataList());
+     const [scrollLeft, setScrollLeft]    = useState(false)
      const elementRef = useRef(null);
 
      useEffect(() => {
@@ -40,17 +38,7 @@ export default function Men(){
           }
         
     },[]);
-    
-    const handleClothChange = (name, price, imgsrc)=>{
-        setHandlename((prevState ) => 
-            [...prevState,{id: `${nanoid()}`,"name":name, "price":price, "imgsrc": imgsrc}]
-        );
-        taskList = handlename;
-        console.log(JSON.stringify(taskList));
-    
-    
-    }
-
+        
     return(
         
         <div style= {{
@@ -72,16 +60,16 @@ export default function Men(){
                  overflowX: "scroll",
              }}>
       
-          <Box clothName={"flat cap"}      clothPrice={ 5.10}    srcName={require("../image/menimage/man1.jpg")} onClothNameChange={handleClothChange} />
-          <Box clothName={"head warmer"}   clothPrice={ 40.20}   srcName={require("../image/menimage/man2.jpg")} onClothNameChange={handleClothChange}/>
-         <Box clothName={"snow cap"}      clothPrice={ 90.00}   srcName={require("../image/menimage/man3.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"head warmer"}   clothPrice={ 30.00}   srcName={require("../image/menimage/man4.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"bucket cap"}    clothPrice={200.10}   srcName={require("../image/menimage/man5.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"office outfit"} clothPrice={ 70.00}   srcName={require("../image/menimage/man6.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"jacket"}        clothPrice={ 250.50}  srcName={require("../image/menimage/man7.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"leather jacket"} clothPrice={ 20.25}  srcName={require("../image/menimage/man8.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"double pocket shirt"} clothPrice={ 20.00} srcName={require("../image/menimage/man9.jpg")} onClothNameChange={handleClothChange}/>
-          <Box clothName={"Ray glasses"}    clothPrice={ 1.00}   srcName={require("../image/menimage/man10.jpg")} onClothNameChange={handleClothChange}/> 
+          <Box clothName={"flat cap"}      clothPrice={ 5.10}    srcName={require("../image/menimage/man1.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"head warmer"}   clothPrice={ 40.20}   srcName={require("../image/menimage/man2.jpg")} onClothNameChange={handleClothChange} onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"snow cap"}      clothPrice={ 90.00}   srcName={require("../image/menimage/man3.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"head warmer"}   clothPrice={ 30.00}   srcName={require("../image/menimage/man4.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"bucket cap"}    clothPrice={200.10}   srcName={require("../image/menimage/man5.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"office outfit"} clothPrice={ 70.00}   srcName={require("../image/menimage/man6.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"jacket"}        clothPrice={ 250.50}  srcName={require("../image/menimage/man7.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"leather jacket"} clothPrice={ 20.25}  srcName={require("../image/menimage/man8.jpg")} onClothNameChange={handleClothChange}    onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"double pocket shirt"} clothPrice={ 20.00} srcName={require("../image/menimage/man9.jpg")} onClothNameChange={handleClothChange}  onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/>
+          <Box clothName={"Ray glasses"}    clothPrice={ 1.00}   srcName={require("../image/menimage/man10.jpg")} onClothNameChange={handleClothChange}   onClothSave={handleClothSave} bookMarkColor={bookMarkColor}/> 
               </div>
               
         <div style ={{visibility: scrollRight ? 'visible' : 'hidden',

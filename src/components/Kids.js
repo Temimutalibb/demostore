@@ -1,17 +1,11 @@
-import { nanoid } from "nanoid";
 import { useEffect, useRef, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Box from "./Box";
 
-export let  taskList  = [];
-export const dataList = () => taskList;
-
-
-export default function Kids(){
+export default function Kids({handleClothChange}){
    /* for the scroll icon when over */
      const [scrollRight, setScrollRight]  = useState(false);
      const [scrollLeft, setScrollLeft]    = useState(false);
-     const [handlename, setHandlename]    = useState(taskList);
      const elementRef = useRef(null);
   
      useEffect(() => {
@@ -40,14 +34,6 @@ export default function Kids(){
             };
           }
     },[]);
-
-    const handleClothChange = (name, price, imgsrc)=>{
-        setHandlename((prevState ) => 
-            [...prevState,{id: `${nanoid()}`,"name":name, "price":price, "imgsrc": imgsrc}]
-        );
-        taskList = handlename;
-        console.log(JSON.stringify(taskList));
-    }
     
     return(
         
