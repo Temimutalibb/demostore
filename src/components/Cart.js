@@ -1,5 +1,7 @@
+import React, { useEffect, useState } from 'react';
 
-export default function Cart({cartitems, handleDelete}){
+   function Cart  (){
+    const [items, setItems] = useState([]);
 
     const divBody= {
         display:"flex",flexDirection:"column"  
@@ -17,35 +19,41 @@ export default function Cart({cartitems, handleDelete}){
     flex:1
     }
 
-    return(
-        <>
-        { cartitems && cartitems.length > 0 ? (
-            <div style ={divBody}>
+    useEffect(() => {
+       const localStorageItems = [];
+       for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let value = JSON.parse(localStorage.getItem(key)); // Parse the value to an object
+          localStorageItems.push({ key, value });
+        }
+        setItems(localStorageItems);
+    }, []);
 
-                {cartitems?.map((task) => 
-                    <div key={task.id}
-                    style={divKey}>
+    const handleDelete = (key) =>{
+        localStorage.removeItem(key);
+        setItems(items.filter(item => item.key !== key));
+    }
 
-                   <img src ={task.imgsrc}
-                   style ={imgStyle}
-                   alt ={task.name} />
-            
-                <div style ={flexStyle}>{task.name}</div>
-                <div style ={flexStyle}>{task.price}</div>
+    const filteredItems = items.filter(item => item.value.status === "cart");
 
-                <button
-      style ={{flex: 1}}
-
-      onClick={() =>handleDelete(task.id)}
-      >remove</button>
-       </div>
-      )}
-    
+    return (
+    <>
+    <div style ={divBody}>
+      {filteredItems.map((item) => (
+         <div key={item.key}  style={divKey}>
+            <img src ={item.value.img} style ={imgStyle}
+             alt ={item.value.clothname}
+             />
+            <div style ={flexStyle}>{item.valueclothname}</div>
+            <div style ={flexStyle}>{item.value.clothName}</div>
+           
+            <button onClick={() =>handleDelete(item.key)}
+            style ={{flex: 1}}>remove</button>
         </div>
-        ) : (
-            <p style ={{fontSize:"20px"}}> Empyt Cart</p>
-        )}
+        ))}
+    </div>
+    </>
+    );
+};
 
-        </>
-    )
-}
+export default Cart;

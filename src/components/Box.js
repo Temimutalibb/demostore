@@ -1,110 +1,77 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import styles from './box-style.module.css';
+import SizeButton from "./Sizebutton";
 
 
-function Box({ 
-              clothName, clothPrice, onClothNameChange , onClothSave,
-              srcName, altName ="image", bookMarkColor})
-            {
+function Box({clothName, clothPrice, srcName, altName ="image"}){
+   const[sizeButtonhidden , setSizeButtonhidden] = useState(false)
+   const[bookmarkColor, setBookmarkColor] = useState(true)
     
-    const[hidden , setHidden] = useState(true);
-    
-   
-    function DisplayPrice(){
-   
-        return(
-           <>
-               <div style={{
-                   position:"absolute",
-                   width:"100%",
-                   height:"100px",
-                   bottom:100,
-                   visibility:hidden ? 'hidden' : 'block'
-                }}>
-                   <div style={{
-                       display: "flex",
-                       alignItems:"center", 
-                       flexWrap:"wrap",
-                       fontSize: '11px',
-                       gap: 5
-                    }}>
-  
-                       <button onClick={()=> {onClothNameChange(clothName, clothPrice, srcName)}}
-                       style={{flex: 1,}}>EU XS/ US XS</button> 
-
-                       <button onClick={()=> {onClothNameChange(clothName, clothPrice, srcName)}}
-                       style={{flex: 1, }}>EU M/US M
-                       </button>
-
-                       <button onClick={()=> {onClothNameChange(clothName, clothPrice, srcName)}}
-                       style={{flex: 1,}}>EU S/US S</button>
-
-                       <button onClick={()=> {onClothNameChange(clothName, clothPrice, srcName)}}
-                       style={{flex: 1,}}>EU L/ US L</button>
-
-                       <button onClick={()=> {onClothNameChange(clothName, clothPrice, srcName)}}
-                       style={{flex: 1, }}>EU XL/US L</button> 
-                   </div> 
-                </div>
-            </>
-        ) 
-  
-    }
-
-    function OnClick(){
-        if(hidden === true){
-            setHidden(false)
-        }else{ 
-            setHidden(true)
-        }
-    }
-
-     
-    const bookMarkClick = (e) =>{
-        if(bookMarkColor){
-            e.target.style.color = "grey"
-        }else{
-            e.target.style.color = "black"
-        }
+    const handleClick = () =>{
+      let task = {id:`${nanoid()}`, status: "cart", clothname:clothName, 
+         clothName:clothPrice, img: srcName
+      }
+      localStorage.setItem( `${nanoid()}`,JSON.stringify(task))
     }
      
-    return (
-        <>
-            <div className="bodyclass"
-            style={{
-              width: "250px", height: "350px"
-            }}>
-                <div className={styles.image}>
-                    <img src = {srcName}  alt= {altName}
-                    style = {{
-                        width : "250px", height: "300px",borderRadius: "10px"
-                    }}/>
-                    <DisplayPrice/>
-                    <div className = {styles.icon}
-                       onClick={OnClick}>
-                           +  
-                   </div>
+    const handleClothsave = () =>{
+        if(bookmarkColor){
+            setBookmarkColor(!bookmarkColor)
+            let task = {id:`${nanoid()}`, status: "save", clothname:clothName, 
+               clothName:clothPrice, img: srcName
+            }
+            localStorage.setItem(`${nanoid()}`,JSON.stringify(task))
+        }
+        if(!bookmarkColor){
+           setBookmarkColor(!bookmarkColor)
+           localStorage.removeItem(clothName)
+        }
+     }
+  
+    return(
+       <>
+       {/* ui for each card*/}
+       <div className="bodyclass" style={{width: "250px", height: "350px"}}>
+          <div className={styles.image}>
+             <img src = {srcName} alt= {altName}
+                 style = {{ width : "250px", height: "300px",borderRadius: "10px" }}
+             />
+             <div  style={{position:"absolute",bottom: 100, width:"100%",height:"100px"}}>
+                <div  style={{display: "flex", alignItems:"center",flexWrap:"wrap",fontSize:'11px', gap: 5}}>
+                    {/*the cloth sizes button*/}
+                    {sizeButtonhidden   && (<>
+                      <SizeButton onClick={ handleClick} style = {{flex: 1}}>EU M/US M </SizeButton>
+                      <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M </SizeButton>
+                      <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M</SizeButton>
+                      <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M </SizeButton>
+                    </>) 
+                    }
                 </div>
-
-                <div className = {styles.priceclass}>
-                    <div className={styles.clothname}>
-                       {clothName} <br/>
-                       {clothPrice}
-                   </div>
-         
-                  <div className = {styles.whilst}>
-                      <FaBookmark
-                          title="save"
-                          onClick={(e)=>{onClothSave(clothName,clothPrice,srcName); bookMarkClick(e)}}
-                     />
-                  </div>
-               </div> 
             </div>
+            <div className = {styles.icon}
+               onClick={()=> setSizeButtonhidden(!sizeButtonhidden)}>
+                    +  
+            </div>
+          </div>
+          <div className = {styles.priceclass}>
+             <div className={styles.clothname}>
+                {clothName} <br/>
+                {clothPrice}
+            </div>
+            <div className = {styles.whilst}>
+               <FaBookmark style= {bookmarkColor? {color: "cadetblue"} : {color: "black" }}
+                   title="save"
+                   onClick={handleClothsave}
+               />
+            </div>
+            </div> 
+        </div>
         </>
-    );
-         
-};
+     );
+}
+ 
 
 export default Box;
 

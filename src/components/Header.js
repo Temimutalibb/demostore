@@ -1,10 +1,6 @@
 import { FaBars, FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
 import styles from './header-style.module.css';
-
-
-
 
 function Header(){
     return(
@@ -17,18 +13,18 @@ function Header(){
         <input className={styles.search}
          type = "search"
          title = "search"
-         placeholder='search' 
+         placeholder='search' z
          />
          <Link to="/loginpage" className={styles.login}>
-         <FaUser/>
+         <FaUser style={{color:"rgb(0, 153, 255)"}}/>
         </Link>
 
         <Link to="/whilst" className={styles.whilst}>
-         <FaHeart/> 
+         <FaHeart  style={{color:"rgb(0, 153, 255)"}}/> 
         </Link>
 
         <Link to="/cart" className={styles.basket}>
-         <FaShoppingCart/> 
+         <FaShoppingCart  style={{color:"rgb(0, 153, 255)"}}/> 
          <span style =
          {{fontSize:"15px",color:"red",zIndex:1,position:"absolute"}}>
           
