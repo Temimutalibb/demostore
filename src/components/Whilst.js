@@ -35,7 +35,10 @@ import React, { useEffect, useState } from 'react';
     }
 
     const filteredItems = items.filter(item => item.value.status === "save");
-
+    
+    if(filteredItems.length === 0){
+        return <div style={{color:"red"}}>No saved item</div>
+    }
     return (
     <>
     <div style ={divBody}>

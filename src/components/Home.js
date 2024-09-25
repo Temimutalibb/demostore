@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Category from './Category';
 import Foot from './Foot';
 import Header from './Header';
@@ -10,11 +10,17 @@ import Women from './Women';
 
 
 function Home() {
- 
+
+  useEffect(() => {
+    console.log("Toolbar hi from useEffect")
+    window.addEventListener('storage', () => alert("detct") ) 
+
+}, []);
+
   return (
     <div>
       < div className = "container">
-      <div className ="head"><Header/></div>
+      <div className ="head"><Header dot={"."}/></div>
       <div className= "category"><Category/></div>
       <div className ="women"><Women/></div>
       <div className ="men"><Men/></div>

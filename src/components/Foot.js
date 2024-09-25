@@ -3,7 +3,7 @@
 function Foot(){
     return(
     <>
-    <div style ={{backgroundColor:"khaki",height:'250px', width:"100%",display:"flex",flexWrap:"wrap",marginTop:"200px",textAlign:"center",justifyContent:"center",alignItems:"center"}}>
+    <div style ={{backgroundColor:"khaki",height:'auto', width:"100%",display:"flex",flexWrap:"wrap",marginTop:"100px",textAlign:"center",justifyContent:"center",alignItems:"center"}}>
         <div style={{flex:'1', margin:"5px",  minWidth:"20%", fontSize:"16px",color: "black",padding:"10px",lineHeight:"2"}}
         className="thisfoot">
             <div>The Company</div>

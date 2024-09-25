@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-   function Cart  (){
+
+   function Cart() {
     const [items, setItems] = useState([]);
 
     const divBody= {
@@ -35,9 +36,14 @@ import React, { useEffect, useState } from 'react';
     }
 
     const filteredItems = items.filter(item => item.value.status === "cart");
+    
+    if(filteredItems.length === 0){
+        return <div style={{color:"red"}}>Cart is empty</div>
+    }
 
     return (
     <>
+    
     <div style ={divBody}>
       {filteredItems.map((item) => (
          <div key={item.key}  style={divKey}>

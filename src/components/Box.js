@@ -7,9 +7,10 @@ import SizeButton from "./Sizebutton";
 
 function Box({clothName, clothPrice, srcName, altName ="image"}){
    const[sizeButtonhidden , setSizeButtonhidden] = useState(false)
-   const[bookmarkColor, setBookmarkColor] = useState(true)
+   const[bookmarkColor, setBookmarkColor] = useState(true);
+
     
-    const handleClick = () =>{
+    const handleClick = (e) =>{
       let task = {id:`${nanoid()}`, status: "cart", clothname:clothName, 
          clothName:clothPrice, img: srcName
       }
@@ -29,7 +30,7 @@ function Box({clothName, clothPrice, srcName, altName ="image"}){
            localStorage.removeItem(clothName)
         }
      }
-  
+     
     return(
        <>
        {/* ui for each card*/}
@@ -42,7 +43,7 @@ function Box({clothName, clothPrice, srcName, altName ="image"}){
                 <div  style={{display: "flex", alignItems:"center",flexWrap:"wrap",fontSize:'11px', gap: 5}}>
                     {/*the cloth sizes button*/}
                     {sizeButtonhidden   && (<>
-                      <SizeButton onClick={ handleClick} style = {{flex: 1}}>EU M/US M </SizeButton>
+                      <SizeButton onClick={ handleClick} style = {{flex:1}}>EU M/US M </SizeButton>
                       <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M </SizeButton>
                       <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M</SizeButton>
                       <SizeButton onClick={ handleClick} style = {{flex: 1}}> EU M/US M </SizeButton>
